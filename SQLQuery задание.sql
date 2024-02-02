@@ -1,27 +1,24 @@
-/*¬ базе данных MS SQL Server есть продукты и категории. 
-ќдному продукту может соответствовать много категорий, в одной категории может быть много продуктов. 
-Ќапишите SQL запрос дл€ выбора всех пар Ђ»м€ продукта Ц »м€ категорииї. 
-≈сли у продукта нет категорий, то его им€ все равно должно выводитьс€.*/
+
 CREATE TABLE [dbo].[PRODUCTS] (
 [ID] INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 [NAME] nvarchar(max) NOT NULL
 );
 
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('Ў ј‘');
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('—“ќЋ');
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('—“”Ћ');
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('„ј—џ');
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('‘≈Ќ');
-INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('ѕЋ≈ƒ');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√Ш√К√А√Ф');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√С√Т√О√Л');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√С√Т√У√Л');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√Ч√А√С√Ы');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√Ф√Е√Н');
+INSERT INTO [dbo].PRODUCTS ([NAME]) VALUES ('√П√Л√Е√Д');
 
 CREATE TABLE [dbo].[CATEGORIES] (
 [ID] INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
 [NAME] nvarchar(max) NOT NULL
 );
 
-INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('ƒќћ');
-INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('”ё“');
-INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('Ѕџ“');
+INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('√Д√О√М');
+INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('√У√Ю√Т');
+INSERT INTO [dbo].CATEGORIES ([NAME]) VALUES ('√Б√Ы√Т');
 
 CREATE TABLE [dbo].[PRODUCTSCATEGORIES] (
 [PRODUCTID] INT FOREIGN KEY REFERENCES [dbo].[PRODUCTS] ([ID]),
@@ -39,6 +36,6 @@ INSERT INTO PRODUCTSCATEGORIES ([PRODUCTID],[CATEGORYID]) VALUES (4,1);
 INSERT INTO PRODUCTSCATEGORIES ([PRODUCTID],[CATEGORYID]) VALUES (4,3);
 
 
-SELECT PRODUCTS.NAME AS "»ћя “ќ¬ј–ј", CATEGORIES.NAME AS "»ћя  ј“≈√ќ–»»" FROM PRODUCTS
+SELECT PRODUCTS.NAME AS "√И√М√Я √Т√О√В√А√Р√А", CATEGORIES.NAME AS "√И√М√Я √К√А√Т√Е√Г√О√Р√И√И" FROM PRODUCTS
 LEFT JOIN [dbo].PRODUCTSCATEGORIES ON (PRODUCTS.ID = PRODUCTSCATEGORIES.PRODUCTID )
 lEFT JOIN [dbo].CATEGORIES ON (PRODUCTSCATEGORIES.CATEGORYID = CATEGORIES.ID );
